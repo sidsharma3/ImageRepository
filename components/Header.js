@@ -70,14 +70,13 @@ const Header = () => {
                 </Link>
               </NavItem>
             )}
-
+            <NavItem>
+                  <Link href="/submissions">
+                    <NavLink>Images</NavLink>
+                  </Link>
+            </NavItem>
             {isAuth() && isAuth().role === 1 && (
               <>
-                <NavItem>
-                  <Link href="/submissions">
-                    <NavLink>Submissions</NavLink>
-                  </Link>
-                </NavItem>
                 <NavItem>
                   <Link href="/admin">
                     <NavLink>{`${isAuth().name}'s Dashboard`}</NavLink>
@@ -95,12 +94,12 @@ const Header = () => {
             )}
 
             <NavItem>
-                <a href="/user/crud/submission" className="btn btn-primary text-light">Upload Submission</a>
+                <a href="/user/crud/submission" className="btn btn-primary text-light">Upload an Image</a>
             </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
-      {isAuth() && isAuth().role === 1 && (<Search />)}
+      <Search />
     </React.Fragment>
   );
 };

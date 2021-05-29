@@ -13,12 +13,13 @@ import { API } from '../../config';
 
 const SubmissionUpdate = ({ router }) => {
     const [body, setBody] = useState('');
-    const [feedback, setFeedback] = useState('');
     const [fileDownloadLink, setFileDownloadLink] = useState('');
     const [fileImageLink, setFileImageLink] = useState('');
 
     const [categories, setCategories] = useState([]);
     const [tags, setTags] = useState([]);
+
+    const [previewURL, setPreviewURL] = useState();
 
     const [checked, setChecked] = useState([]); // categories
     const [checkedTag, setCheckedTag] = useState([]); // tags
@@ -29,8 +30,7 @@ const SubmissionUpdate = ({ router }) => {
         success: '',
         formData: '',
         title: '',
-        body: '',
-        feedback: ''
+        body: ''
     });
 
     const { error, success, formData, title } = values;
@@ -56,7 +56,6 @@ const SubmissionUpdate = ({ router }) => {
                     }
                     setValues({ ...values, title: data.title });
                     setBody(data.body);
-                    setFeedback(data.feedback)
                     setCategoriesArray(data.categories);
                     setTagsArray(data.tags);
                 }
@@ -186,6 +185,9 @@ const SubmissionUpdate = ({ router }) => {
 
     const handleChange = name => e => {
         // console.log(e.target.value);
+        if (name === 'photo') {
+            setPreviewURL(URL.createObjectURL(event.target.files[0]))
+        }
         const value = name === 'photo' ? e.target.files[0] : e.target.value;
         formData.set(name, value);
         setValues({ ...values, [name]: value, formData, error: '' });
@@ -194,11 +196,6 @@ const SubmissionUpdate = ({ router }) => {
     const handleBody = e => {
         setBody(e);
         formData.set('body', e);
-    };
-
-    const handleFeedback = e => {
-        setFeedback(e);
-        formData.set('feedback', e)
     };
 
     const editSubmission = e => {
@@ -247,16 +244,6 @@ const SubmissionUpdate = ({ router }) => {
                         placeholder="Write something amazing..."
                         onChange={handleBody}
                     />
-                    <br />
-                    <h3>Feedback</h3>
-                    <ReactQuill
-                        readOnly
-                        modules={QuillModules}
-                        formats={QuillFormats}
-                        value={feedback}
-                        placeholder="Write something amazing..."
-                        onChange={handleFeedback}
-                    />
                 </div>
 
                 <div>
@@ -273,16 +260,16 @@ const SubmissionUpdate = ({ router }) => {
         <div className="container-fluid pb-5">
             <div className="row">
                 <div className="col-md-8">
+                    {fileImageLink && (
+                        <img src={fileImageLink} alt={title} style={{ width: '100%' }} />
+                    )}
                     {updateSubmissionForm()}
-
+                    <br />
+                    {previewURL && <><h3>Image Preview</h3> <img src={previewURL} width="500"/></>}
                     <div className="pt-3">
                         {showSuccess()}
                         {showError()}
                     </div>
-
-                    {fileImageLink && (
-                        <img src={fileImageLink} alt={title} style={{ width: '100%' }} />
-                    )}
                 </div>
 
                 <div className="col-md-4">

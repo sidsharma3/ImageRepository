@@ -98,13 +98,12 @@ const Submissions = ({ submissions, categories, tags, totalSubmissions, submissi
         <React.Fragment>
             {head()}
             <Layout>
-                <Admin>
                     <main>
                         <div className="container-fluid">
                             <header>
                                 <div className="col-md-12 pt-3">
                                     <h1 className="display-4 font-weight-bold text-center">
-                                        Click on the Categories and Tags Below to Search for Specfic Submissions
+                                        Click on the Categories and Tags Below to Filter Images
                                     </h1>
                                 </div>
                                 <section>
@@ -120,7 +119,6 @@ const Submissions = ({ submissions, categories, tags, totalSubmissions, submissi
                         <div className="container-fluid">{showLoadedSubmissions()}</div>
                         <div className="text-center pt-5 pb-5">{loadMoreButton()}</div>
                     </main>
-                </Admin>
             </Layout>
         </React.Fragment>
     );

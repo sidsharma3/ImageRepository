@@ -86,7 +86,6 @@ const SingleSubmission = ({ submission, query }) => {
         <React.Fragment>
             {head()}
             <Layout>
-                <Admin>
                     <main>
                         <article>
                             <div className="container-fluid">
@@ -140,7 +139,6 @@ const SingleSubmission = ({ submission, query }) => {
                             </div>
                         </article>
                     </main>
-                </Admin>
             </Layout>
         </React.Fragment>
     );

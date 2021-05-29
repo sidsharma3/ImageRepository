@@ -21,24 +21,6 @@ const Card = ({ submission }) => {
             </Link>
         ));
 
-    const deleteSubmission = slug => {
-        removeSubmission(slug, token).then(data => {
-            if (data.error) {
-                console.log(data.error);
-            } else {
-                location.reload();
-                return false;
-            }
-        });
-    };
-
-    const deleteConfirm = slug => {
-        let answer = window.confirm('Are you sure you want to delete this?');
-        if (answer) {
-            deleteSubmission(slug);
-        }
-    };
-
     return (
         <div className="lead pb-4">
             <header>
@@ -79,10 +61,7 @@ const Card = ({ submission }) => {
                     <section>
                         <div className="pb-3">{submission && submission.excerpt ? renderHTML(submission.excerpt) : 'No Excerpt'}</div>
                         <a href={`/submissions/${submission.slug}`} className="mr-2 btn btn-primary pt-2">Read more</a>
-                        <button className="btn btn-danger pt-2" onClick={() => deleteConfirm(submission.slug)}>
-                            Delete
-                        </button>   
-                        <a href={`/admin/crud/${submission.slug}`} className="ml-2 btn btn-warning">Update</a>
+                        <a href={`https://res.cloudinary.com/dlgtho53p/image/upload/fl_attachment/${submission.fileID}/${submission.fileName}`} className="mr-2 btn btn-warning pt-2">Download</a>
                     </section>
                 </div>
             </div>

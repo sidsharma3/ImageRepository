@@ -29,15 +29,15 @@ const CreateSubmission = ({ router }) => {
     const [checked, setChecked] = useState([]); // categories
     const [checkedTag, setCheckedTag] = useState([]); // tags
 
+    const [previewURL, setPreviewURL] = useState();
+
     const [body, setBody] = useState(submissionFromLS());
-    const [feedback, setFeedback] = useState(' ');
     const [values, setValues] = useState({
         error: '',
         sizeError: '',
         success: '',
         formData: '',
         title: '',
-        feedback: '',
         hidePublishButton: false,
         loading: false
     });
@@ -80,7 +80,6 @@ const CreateSubmission = ({ router }) => {
             } else {
                 setValues({ ...values, title: '', error: '', success: `A new submission titled "${data.title}" is created` });
                 setBody('');
-                setFeedback('');
                 setCategories([]);
                 setTags([]);
             }
@@ -89,6 +88,9 @@ const CreateSubmission = ({ router }) => {
 
     const handleChange = name => e => {
         // console.log(e.target.value);
+        if (name === 'photo') {
+            setPreviewURL(URL.createObjectURL(event.target.files[0]))
+        }
         const value = name === 'photo' ? e.target.files[0] : e.target.value;
         formData.set(name, value);
         setValues({ ...values, [name]: value, formData, error: '' });
@@ -98,8 +100,6 @@ const CreateSubmission = ({ router }) => {
         // console.log(e);
         setBody(e);
         formData.set('body', e);
-        setFeedback(e);
-        formData.set('feedback', " ")
         if (typeof window !== 'undefined') {
             localStorage.setItem('submission', JSON.stringify(e));
         }
@@ -205,6 +205,8 @@ const CreateSubmission = ({ router }) => {
             <div className="row">
                 <div className="col-md-8">
                     {createSubmissionForm()}
+                    <br />
+                    {previewURL && <><h3>Image Preview</h3> <img src={previewURL} width="500"/></>}
                     <div className="pt-3">
                         {showError()}
                         {showSuccess()}
@@ -215,11 +217,9 @@ const CreateSubmission = ({ router }) => {
                     <div>
                         <div className="form-group pb-2">
                             <h5>Attach a File</h5>
-                            <hr />
-
+                            <br />
                             <small className="text-muted">Max size: 1mb</small>
                             <label className="btn btn-outline-info">
-                                Upload a file
                                 <input onChange={handleChange('photo')} type="file" accept="image/*" />
                             </label>
                         </div>

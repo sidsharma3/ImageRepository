@@ -9,7 +9,7 @@ const Index = () => {
                     <div className="row">
                         <div className="col-md-12 text-center">
                             <h1 className="display-4 font-weight-bold">
-                                Welcome to the Online Marking Application!
+                                Welcome to the Image Sharing Application!
                             </h1>
                         </div>
                     </div>
@@ -29,16 +29,16 @@ const Index = () => {
                                             ')'
                                     }}
                                 >
-                                    <h2 className="text-shadow text-center h1">Click Here to Sign In Now!</h2>
+                                    <h2 className="text-shadow text-center h1">Click Here to See Images and Submissions!</h2>
                                 </div>
                                 <div className="back text-center">
-                                    <Link href="/signin">
+                                    <Link href="/submissions">
                                         <a>
-                                            <h3 className="h1">Click Here to Sign In Now!</h3>
+                                            <h3 className="h1">Click Here to See Images and Submissions!</h3>
                                         </a>
                                     </Link>
                                     <h2>
-                                        Signing in allows you to create submissions! Submissions can include files, text, tags and categories!
+                                        Submissions include images, text, tags and categories!
                                     </h2>
                                 </div>
                             </div>
