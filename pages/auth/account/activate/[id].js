@@ -44,7 +44,7 @@ const ActivateAccount = ({ router }) => {
                 <h3 className="pb-4">Hey {name}, Ready to activate your account?</h3>
                 {showLoading()}
                 {error && error}
-                {success && 'You have successfully activated your account. Please signin.'}
+                {success && 'You have successfully activated your account. Please sign in.'}
                 {showButton && (
                     <button className="btn btn-outline-primary" onClick={clickSubmit}>
                         Activate Account

@@ -52,12 +52,12 @@ const Header = () => {
               <React.Fragment>
                 <NavItem>
                   <Link href="/signin">
-                    <NavLink>Signin</NavLink>
+                    <NavLink>Sign In</NavLink>
                   </Link>
                 </NavItem>
                 <NavItem>
                   <Link href="/signup">
-                    <NavLink>Signup</NavLink>
+                    <NavLink>Sign Up</NavLink>
                   </Link>
                 </NavItem>
               </React.Fragment>

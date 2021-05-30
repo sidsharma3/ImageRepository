@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 import { signin, authenticate, isAuth } from '../../actions/auth';
 import Router from 'next/router';
-import LoginGoogle from './LoginGoogle';
 
 const SigninComponent = () => {
     const [values, setValues] = useState({
@@ -76,7 +75,7 @@ const SigninComponent = () => {
                 </div>
 
                 <div>
-                    <button className="btn btn-primary">Signin</button>
+                    <button className="btn btn-primary">Sign in</button>
                 </div>
             </form>
         );
@@ -87,7 +86,6 @@ const SigninComponent = () => {
             {showError()}
             {showLoading()}
             {showMessage()}
-            <LoginGoogle />
             {showForm && signinForm()}
             <br />
             <a href="/auth/password/forgot" className="btn btn-outline-danger btn-sm">Forgot password</a>

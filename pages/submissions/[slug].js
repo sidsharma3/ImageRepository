@@ -8,7 +8,6 @@ import { API, DOMAIN, APP_NAME } from '../../config';
 import moment from 'moment';
 import renderHTML from 'react-render-html';
 import SmallCard from '../../components/submission/SmallCard';
-import DisqusThread from '../../components/DisqusThread';
 import SubmissionUpdate from '../../components/crud/SubmissionUpdate';
 import Admin from '../../components/auth/Admin';
 
@@ -74,14 +73,6 @@ const SingleSubmission = ({ submission, query }) => {
         ));
     };
 
-    const showComments = () => {
-        return (
-            <div>
-                <DisqusThread id={submission._id} title={submission.title} path={`/submission/${submission.slug}`} />
-            </div>
-        )
-    }
-
     return (
         <React.Fragment>
             {head()}
@@ -133,10 +124,6 @@ const SingleSubmission = ({ submission, query }) => {
                                 <div className="row">
                                     {showRelatedSubmission()}
                                 </div>
-                            </div>
-
-                            <div className="container pt-5 pb-5">
-                                {showComments()}
                             </div>
                         </article>
                     </main>
