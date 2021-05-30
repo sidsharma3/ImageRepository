@@ -60,11 +60,10 @@ const Submissions = ({ submissions, categories, tags, totalSubmissions, submissi
 
     const showAllSubmissions = () => {
         return submissions.map((submission, i) => {
-            // ()
             return (
                 <article key={i}>
                     <Card submission={submission} />
-                    <hr />
+                    <br />
                 </article>
             );
         });

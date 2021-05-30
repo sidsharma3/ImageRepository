@@ -38,7 +38,7 @@ const Category = () => {
                     onDoubleClick={() => deleteConfirm(c.slug)}
                     title="Double click to delete"
                     key={i}
-                    className="btn btn-outline-primary mr-1 ml-1 mt-3"
+                    className="btn btn-outline-danger mr-1 ml-1 mt-3"
                 >
                     {c.name}
                 </button>
@@ -105,7 +105,7 @@ const Category = () => {
     const newCategoryFom = () => (
         <form onSubmit={clickSubmit}>
             <div className="form-group">
-                <label className="text-muted">Name</label>
+                <label className="text-muted">Input the Name for a Category Below!</label>
                 <input type="text" className="form-control" onChange={handleChange} value={name} required />
             </div>
             <div>

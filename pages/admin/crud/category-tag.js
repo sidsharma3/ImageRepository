@@ -11,6 +11,7 @@ const CategoryTag = () => {
                     <div className="row">
                         <div className="col-md-12 pt-5 pb-5">
                             <h2>Manage Categories and Tags</h2>
+                            <p>Click on the Red Buttons to Delete a Category or Tag</p>
                         </div>
                         <div className="col-md-6">
                             <Category />

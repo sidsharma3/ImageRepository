@@ -42,7 +42,7 @@ const CreateSubmission = ({ router }) => {
         loading: false
     });
 
-    const { error, sizeError, success, formData, title, hidePublishButton } = values;
+    const { error, sizeError, success, formData, title, hidePublishButton, loading } = values;
     const token = getCookie('token');
 
     useEffect(() => {
@@ -73,13 +73,14 @@ const CreateSubmission = ({ router }) => {
 
     const publishSubmission = e => {
         e.preventDefault();
-        // console.log('ready to publishSubmission');
+        setValues({...values, loading: true});
         createSubmission(formData, token).then(data => {
             if (data.error) {
-                setValues({ ...values, error: data.error });
+                setValues({ ...values, error: data.error, loading: false });
             } else {
-                setValues({ ...values, title: '', error: '', success: `A new submission titled "${data.title}" is created` });
+                setValues({ ...values, title: '', error: '', loading: false, success: `A new submission titled "${data.title}" is created` });
                 setBody('');
+                setPreviewURL('');
                 setCategories([]);
                 setTags([]);
             }
@@ -195,6 +196,7 @@ const CreateSubmission = ({ router }) => {
                     <button type="submit" className="btn btn-primary">
                         Publish
                     </button>
+                    {loading && <p>Submitting...</p>}
                 </div>
             </form>
         );
@@ -204,13 +206,13 @@ const CreateSubmission = ({ router }) => {
         <div className="container-fluid pb-5">
             <div className="row">
                 <div className="col-md-8">
-                    {createSubmissionForm()}
-                    <br />
-                    {previewURL && <><h3>Image Preview</h3> <img src={previewURL} width="500"/></>}
                     <div className="pt-3">
                         {showError()}
                         {showSuccess()}
                     </div>
+                    {createSubmissionForm()}
+                    <br />
+                    {previewURL && <><h3>Image Preview</h3> <img src={previewURL} width="500"/></>}
                 </div>
 
                 <div className="col-md-4">
@@ -226,13 +228,12 @@ const CreateSubmission = ({ router }) => {
                     </div>
                     <div>
                         <h5>Categories</h5>
-                        <hr />
-
+                        <br />
                         <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>{showCategories()}</ul>
                     </div>
                     <div>
                         <h5>Tags</h5>
-                        <hr />
+                        <br />
                         <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>{showTags()}</ul>
                     </div>
                 </div>

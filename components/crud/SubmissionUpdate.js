@@ -247,7 +247,7 @@ const SubmissionUpdate = ({ router }) => {
                 </div>
 
                 <div>
-                    {fileDownloadLink && <a href={fileDownloadLink}>Download Attachments!</a>}
+                    {fileDownloadLink && <a className="btn btn-warning mr-2" href={fileDownloadLink}>Download Attachments!</a>}
                     <button type="submit" className="btn btn-primary">
                         Update
                     </button>
@@ -263,13 +263,13 @@ const SubmissionUpdate = ({ router }) => {
                     {fileImageLink && (
                         <img src={fileImageLink} alt={title} style={{ width: '100%' }} />
                     )}
-                    {updateSubmissionForm()}
-                    <br />
-                    {previewURL && <><h3>Image Preview</h3> <img src={previewURL} width="500"/></>}
                     <div className="pt-3">
                         {showSuccess()}
                         {showError()}
                     </div>
+                    {updateSubmissionForm()}
+                    <br />
+                    {previewURL && <><h3>Image Preview</h3> <img src={previewURL} width="500"/></>}
                 </div>
 
                 <div className="col-md-4">

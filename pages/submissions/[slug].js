@@ -90,18 +90,20 @@ const SingleSubmission = ({ submission, query }) => {
                         <article>
                             <div className="container-fluid">
                                 <section>
-                                    <div className="row" style={{ marginTop: '-30px' }}>
-                                        <img
-                                            src={`https://res.cloudinary.com/dlgtho53p/image/upload/${submission.fileID}/${submission.fileName}`}
-                                            alt={submission.title}
-                                            className="img img-fluid featured-image"
-                                        />
-                                    </div>
-                                </section>
-
-                                <section>
                                     <div className="container">
-                                        <h1 className="display-2 pb-3 pt-3 text-center font-weight-bold">{submission.title}</h1>
+                                        <h1 className="display-5 pb-3 pt-3 text-center font-weight-bold">{submission.title}</h1>
+                                        <div class="text-center">
+                                            <img
+                                                src={`https://res.cloudinary.com/dlgtho53p/image/upload/${submission.fileID}/${submission.fileName}`}
+                                                alt={submission.title}
+                                                class="rounded mx-auto d-block"
+                                                width="750"
+                                                className="img"
+                                            />
+                                        </div>
+                                        <div className="text-center">
+                                            <a href={`https://res.cloudinary.com/dlgtho53p/image/upload/fl_attachment/${submission.fileID}/${submission.fileName}`} className="mr-2 btn btn-warning pt-2">Download</a>
+                                        </div>
                                         <p className="lead mt-3 mark">
                                         Written by{' '}
                                             <Link href={`/profile/${submission.postedBy.username}`}>
@@ -109,7 +111,6 @@ const SingleSubmission = ({ submission, query }) => {
                                             </Link>{' '}
                                             | Published {moment(submission.updatedAt).fromNow()}
                                         </p>
-
                                         <div className="pb-3">
                                             {showSubmissionCategories(submission)}
                                             {showSubmissionTags(submission)}
